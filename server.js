@@ -18,6 +18,13 @@ app.use(express.static('public'))
 //         res.redirect('/')
 //     }
 // })
+app.get("/", function(req, res) {
+    fs.readFile("index.html", "utf8", (err, data) => {
+        if (err) throw err;
+        res.send(data);
+    } )
+})
+
 app.get('/notes', function(req,res){
     res.sendFile(path.join(__dirname, 'notes.html'))
 })
@@ -53,4 +60,4 @@ app.get('/api/notes', function(req,res){
 
 app.listen(PORT, ()=>{
     console.log(`app is listening on port ${PORT}`)
-})
+});
